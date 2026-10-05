@@ -1,0 +1,28 @@
+# FreeBSD 16 images — build from this repo; do not use Linux Hub tags.
+version: "1.0"
+name: aeolus-blog
+namespace: demo
+# pod omitted → aeolus-blog-default
+
+volumes:
+  - name: db-data
+    pool: zfs/aeolus/blog
+    path: /var/aeolus/ensembles/blog/db
+  - name: wp-data
+    pool: zfs/aeolus/blog
+    path: /var/aeolus/ensembles/blog/wordpress
+
+services:
+  - name: db
+    image: ghcr.io/cloudbsdorg/aeolus-mariadb:16
+    replicas: 1
+    volumes: [db-data]
+    # secretRef:
+    #   - ladon: demo/db/password
+    #     env: MYSQL_PASSWORD
+  - name: wordpress
+    image: ghcr.io/cloudbsdorg/aeolus-wordpress:16
+    replicas: 2
+    depends_on: [db]
+    ports: ["8080:80"]
+    volumes: [wp-data]

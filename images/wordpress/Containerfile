@@ -1,0 +1,6 @@
+# SPDX-License-Identifier: BSD-2-Clause
+# FreeBSD 16 demo image for Aeolus — wordpress
+ARG BASE=ghcr.io/freebsd/freebsd-runtime:16.snap
+FROM ${BASE}
+ARG packages=nginx php85 php85-mysqli php85-session php85-xml php85-filter php85-curl wordpress
+RUN pkg install -y ${packages} && pkg clean -ay
