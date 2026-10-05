@@ -33,7 +33,7 @@ ch. 18 and `cloudbsd-src/release/scripts/make-oci-image.sh`.
 See [`ensembles/blog/ensemble.yml`](ensembles/blog/ensemble.yml) — `namespace: demo`,
 default pod `aeolus-blog-default`, FreeBSD 16 image refs, Ladon `secretRef` comments.
 
-Secrets: [Ladon](https://ladon.cloudbsd.org/) (`ladon.revytechinc.com` same site).
+Secrets: [Ladon](https://ladon.revytechinc.com/) (`ladon.cloudbsd.org` redirects).
 
 ## Smoke bundles
 
