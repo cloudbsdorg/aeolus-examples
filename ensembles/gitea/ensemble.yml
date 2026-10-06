@@ -1,0 +1,19 @@
+# FreeBSD 16 — self-hosted Git (Gitea). Build image from images/gitea.
+version: "1.0"
+name: aeolus-gitea
+namespace: demo
+
+volumes:
+  - name: gitea-data
+    pool: zfs/aeolus/gitea
+    path: /var/aeolus/ensembles/gitea/data
+
+services:
+  - name: gitea
+    image: ghcr.io/cloudbsdorg/aeolus-gitea:16
+    replicas: 1
+    ports: ["3000:3000"]
+    volumes: [gitea-data]
+    # secretRef:
+    #   - ladon: demo/gitea/secret
+    #     env: GITEA_SECRET_KEY

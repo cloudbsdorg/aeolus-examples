@@ -1,0 +1,24 @@
+# FreeBSD 16 — Nextcloud (+ MariaDB). Prefer Nextcloud over OwnCloud.
+version: "1.0"
+name: aeolus-nextcloud
+namespace: demo
+
+volumes:
+  - name: db-data
+    pool: zfs/aeolus/nextcloud
+    path: /var/aeolus/ensembles/nextcloud/db
+  - name: nc-data
+    pool: zfs/aeolus/nextcloud
+    path: /var/aeolus/ensembles/nextcloud/data
+
+services:
+  - name: db
+    image: ghcr.io/cloudbsdorg/aeolus-mariadb:16
+    replicas: 1
+    volumes: [db-data]
+  - name: nextcloud
+    image: ghcr.io/cloudbsdorg/aeolus-nextcloud:16
+    replicas: 1
+    depends_on: [db]
+    ports: ["8080:80"]
+    volumes: [nc-data]

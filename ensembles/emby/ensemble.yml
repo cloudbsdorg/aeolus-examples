@@ -1,0 +1,19 @@
+# FreeBSD 16 — Emby Server. Heavy image; lab/demo only.
+version: "1.0"
+name: aeolus-emby
+namespace: demo
+
+volumes:
+  - name: emby-config
+    pool: zfs/aeolus/emby
+    path: /var/aeolus/ensembles/emby/config
+  - name: emby-media
+    pool: zfs/aeolus/emby
+    path: /var/aeolus/ensembles/emby/media
+
+services:
+  - name: emby
+    image: ghcr.io/cloudbsdorg/aeolus-emby-server:16
+    replicas: 1
+    ports: ["8096:8096"]
+    volumes: [emby-config, emby-media]

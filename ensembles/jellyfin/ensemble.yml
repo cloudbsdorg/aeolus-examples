@@ -1,0 +1,19 @@
+# FreeBSD 16 — Jellyfin media server. Image is large (ffmpeg + runtime deps).
+version: "1.0"
+name: aeolus-jellyfin
+namespace: demo
+
+volumes:
+  - name: jf-config
+    pool: zfs/aeolus/jellyfin
+    path: /var/aeolus/ensembles/jellyfin/config
+  - name: jf-media
+    pool: zfs/aeolus/jellyfin
+    path: /var/aeolus/ensembles/jellyfin/media
+
+services:
+  - name: jellyfin
+    image: ghcr.io/cloudbsdorg/aeolus-jellyfin:16
+    replicas: 1
+    ports: ["8096:8096"]
+    volumes: [jf-config, jf-media]

@@ -1,0 +1,6 @@
+# SPDX-License-Identifier: BSD-2-Clause
+# FreeBSD 16 demo image for Aeolus — gitea
+ARG BASE=ghcr.io/freebsd/freebsd-runtime:16.snap
+FROM ${BASE}
+ARG packages=gitea git
+RUN pkg install -y ${packages} && pkg clean -ay

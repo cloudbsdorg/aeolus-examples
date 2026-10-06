@@ -10,6 +10,14 @@ Linux Hub tags are **not** the story — these images are FreeBSD packages on
 | `aeolus-wordpress` | nginx php85-* wordpress | `ghcr.io/cloudbsdorg/aeolus-wordpress:16` |
 | `aeolus-memcached` | memcached | `ghcr.io/cloudbsdorg/aeolus-memcached:16` |
 | `aeolus-redis` | redis | `ghcr.io/cloudbsdorg/aeolus-redis:16` |
+| `aeolus-gitea` | gitea git | `ghcr.io/cloudbsdorg/aeolus-gitea:16` |
+| `aeolus-nextcloud` | nextcloud-php85 | `ghcr.io/cloudbsdorg/aeolus-nextcloud:16` |
+| `aeolus-jellyfin` | jellyfin (+ ffmpeg deps) | `ghcr.io/cloudbsdorg/aeolus-jellyfin:16` |
+| `aeolus-emby-server` | emby-server | `ghcr.io/cloudbsdorg/aeolus-emby-server:16` |
+
+Wave-1 app ensembles (Track #902): [`ensembles/gitea`](ensembles/gitea/ensemble.yml),
+[`nextcloud`](ensembles/nextcloud/ensemble.yml), [`jellyfin`](ensembles/jellyfin/ensemble.yml),
+[`emby`](ensembles/emby/ensemble.yml). Prefer **Nextcloud** over OwnCloud.
 
 ## Build (FreeBSD / CloudBSD host with podman or buildah)
 
