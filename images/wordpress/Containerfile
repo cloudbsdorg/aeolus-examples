@@ -1,6 +1,10 @@
 # SPDX-License-Identifier: BSD-2-Clause
 # FreeBSD 16 demo image for Aeolus — wordpress
+# Pattern: cloudbsd-src/share/examples/oci/Containerfile.pkg
 ARG BASE=ghcr.io/freebsd/freebsd-runtime:16.snap
 FROM ${BASE}
-ARG packages=nginx php85 php85-mysqli php85-session php85-xml php85-filter php85-curl wordpress
-RUN pkg install -y ${packages} && pkg clean -ay
+ARG packages=nginx php85 php85-mysqli php85-session php85-filter php85-xml php85-curl php85-gd php85-mbstring php85-zlib php85-zip wordpress
+RUN pkg bootstrap -y -r FreeBSD && pkg -o IGNORE_OSVERSION=yes update -f
+RUN pkg install -y ${packages}
+RUN pkg clean -ay && pkg delete -fy pkg && rm -rf /var/db/pkg/repos
+USER root # trivy:ignore:DS-0002 -- FreeBSD runtime OCI images are rootful; matches freebsd-runtime; isolation is host/runtime policy

@@ -1,0 +1,17 @@
+# FreeBSD 16 — Backup server
+# Category: utility
+version: "1.0"
+name: aeolus-bacula-server
+namespace: demo
+
+volumes:
+  - name: data
+    pool: zfs/aeolus/bacula-server
+    path: /var/aeolus/ensembles/bacula-server/data
+
+services:
+  - name: bacula-server
+    image: oci.cloudbsd.org/aeolus-bacula-server:16
+    replicas: 1
+    ports: ["9101:9101"]
+    volumes: [data]

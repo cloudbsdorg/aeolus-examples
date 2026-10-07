@@ -1,0 +1,17 @@
+# FreeBSD 16 — TCP/HTTP load balancer
+# Category: edge
+version: "1.0"
+name: aeolus-haproxy
+namespace: demo
+
+volumes:
+  - name: data
+    pool: zfs/aeolus/haproxy
+    path: /var/aeolus/ensembles/haproxy/data
+
+services:
+  - name: haproxy
+    image: oci.cloudbsd.org/aeolus-haproxy:16
+    replicas: 1
+    ports: ["8404:8404"]
+    volumes: [data]

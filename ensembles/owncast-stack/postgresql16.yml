@@ -1,0 +1,13 @@
+# Fragment included by owncast-stack (same directory — include confinement).
+version: "1.0"
+name: stack-postgresql16
+volumes:
+  - name: data
+    pool: zfs/aeolus/owncast-stack
+    path: /var/aeolus/ensembles/owncast-stack/db
+services:
+  - name: postgresql16
+    image: oci.cloudbsd.org/aeolus-postgresql16:16
+    replicas: 1
+    volumes:
+      - data

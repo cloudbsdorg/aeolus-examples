@@ -13,7 +13,7 @@ volumes:
 
 services:
   - name: jellyfin
-    image: ghcr.io/cloudbsdorg/aeolus-jellyfin:16
+    image: oci.cloudbsd.org/aeolus-jellyfin:16
     replicas: 1
     ports: ["8096:8096"]
     volumes: [jf-config, jf-media]

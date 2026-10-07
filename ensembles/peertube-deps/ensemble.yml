@@ -1,0 +1,27 @@
+# FreeBSD 16 — PeerTube dependency stack (no peertube pkg yet)
+# Category: media
+# Packages: postgresql16 + redis + nginx. PeerTube app is ports/manual until packaged.
+version: "1.0"
+name: aeolus-peertube-deps
+namespace: demo
+
+includes:
+  - path: postgresql16.yml
+    as: db
+  - path: redis.yml
+    as: cache
+
+volumes:
+  - name: web
+    pool: zfs/aeolus/peertube-deps
+    path: /var/aeolus/ensembles/peertube-deps/web
+
+services:
+  - name: nginx
+    image: oci.cloudbsd.org/aeolus-nginx:16
+    replicas: 1
+    ports: ["80:80"]
+    volumes: [web]
+    depends_on:
+      - db-postgresql16
+      - cache-redis

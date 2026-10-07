@@ -13,7 +13,7 @@ volumes:
 
 services:
   - name: emby
-    image: ghcr.io/cloudbsdorg/aeolus-emby-server:16
+    image: oci.cloudbsd.org/aeolus-emby-server:16
     replicas: 1
     ports: ["8096:8096"]
     volumes: [emby-config, emby-media]

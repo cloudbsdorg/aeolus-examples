@@ -1,0 +1,17 @@
+# FreeBSD 16 — Uptime monitoring
+# Category: observe
+version: "1.0"
+name: aeolus-uptime-kuma
+namespace: demo
+
+volumes:
+  - name: data
+    pool: zfs/aeolus/uptime-kuma
+    path: /var/aeolus/ensembles/uptime-kuma/data
+
+services:
+  - name: uptime-kuma
+    image: oci.cloudbsd.org/aeolus-uptime-kuma:16
+    replicas: 1
+    ports: ["3001:3001"]
+    volumes: [data]

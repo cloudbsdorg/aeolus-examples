@@ -1,0 +1,17 @@
+# FreeBSD 16 — E-book library
+# Category: media
+version: "1.0"
+name: aeolus-calibre
+namespace: demo
+
+volumes:
+  - name: data
+    pool: zfs/aeolus/calibre
+    path: /var/aeolus/ensembles/calibre/data
+
+services:
+  - name: calibre
+    image: oci.cloudbsd.org/aeolus-calibre:16
+    replicas: 1
+    ports: ["8081:8081"]
+    volumes: [data]

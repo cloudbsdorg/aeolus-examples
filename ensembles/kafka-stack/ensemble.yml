@@ -1,0 +1,23 @@
+# FreeBSD 16 — Kafka + ZooKeeper
+version: "1.0"
+name: aeolus-kafka-stack
+namespace: demo
+
+volumes:
+  - name: zk-data
+    pool: zfs/aeolus/kafka
+    path: /var/aeolus/ensembles/kafka/zookeeper
+  - name: kafka-data
+    pool: zfs/aeolus/kafka
+    path: /var/aeolus/ensembles/kafka/broker
+
+services:
+  - name: zookeeper
+    image: oci.cloudbsd.org/aeolus-zookeeper:16
+    ports: ["2181:2181"]
+    volumes: [zk-data]
+  - name: kafka
+    image: oci.cloudbsd.org/aeolus-kafka:16
+    depends_on: [zookeeper]
+    ports: ["9092:9092"]
+    volumes: [kafka-data]

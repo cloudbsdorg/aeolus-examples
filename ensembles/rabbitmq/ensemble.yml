@@ -1,0 +1,17 @@
+# FreeBSD 16 — AMQP message broker
+# Category: data
+version: "1.0"
+name: aeolus-rabbitmq
+namespace: demo
+
+volumes:
+  - name: data
+    pool: zfs/aeolus/rabbitmq
+    path: /var/aeolus/ensembles/rabbitmq/data
+
+services:
+  - name: rabbitmq
+    image: oci.cloudbsd.org/aeolus-rabbitmq:16
+    replicas: 1
+    ports: ["5672:5672"]
+    volumes: [data]

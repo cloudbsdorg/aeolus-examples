@@ -1,0 +1,17 @@
+# FreeBSD 16 — P2P file sync
+# Category: utility
+version: "1.0"
+name: aeolus-syncthing
+namespace: demo
+
+volumes:
+  - name: data
+    pool: zfs/aeolus/syncthing
+    path: /var/aeolus/ensembles/syncthing/data
+
+services:
+  - name: syncthing
+    image: oci.cloudbsd.org/aeolus-syncthing:16
+    replicas: 1
+    ports: ["8384:8384"]
+    volumes: [data]

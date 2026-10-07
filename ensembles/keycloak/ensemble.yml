@@ -1,0 +1,17 @@
+# FreeBSD 16 — Identity / SSO
+# Category: security
+version: "1.0"
+name: aeolus-keycloak
+namespace: demo
+
+volumes:
+  - name: data
+    pool: zfs/aeolus/keycloak
+    path: /var/aeolus/ensembles/keycloak/data
+
+services:
+  - name: keycloak
+    image: oci.cloudbsd.org/aeolus-keycloak:16
+    replicas: 1
+    ports: ["8080:8080"]
+    volumes: [data]

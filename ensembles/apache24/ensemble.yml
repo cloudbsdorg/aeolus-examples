@@ -1,0 +1,17 @@
+# FreeBSD 16 — Apache HTTP Server
+# Category: edge
+version: "1.0"
+name: aeolus-apache24
+namespace: demo
+
+volumes:
+  - name: data
+    pool: zfs/aeolus/apache24
+    path: /var/aeolus/ensembles/apache24/data
+
+services:
+  - name: apache24
+    image: oci.cloudbsd.org/aeolus-apache24:16
+    replicas: 1
+    ports: ["80:80"]
+    volumes: [data]

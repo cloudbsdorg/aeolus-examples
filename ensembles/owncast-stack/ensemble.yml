@@ -1,0 +1,23 @@
+# FreeBSD 16 — Owncast stack via ensemble includes (#970)
+# Category: media
+version: "1.0"
+name: aeolus-owncast-stack
+namespace: demo
+
+includes:
+  - path: postgresql16.yml
+    as: db
+
+volumes:
+  - name: data
+    pool: zfs/aeolus/owncast-stack
+    path: /var/aeolus/ensembles/owncast-stack/owncast
+
+services:
+  - name: owncast
+    image: oci.cloudbsd.org/aeolus-owncast:16
+    replicas: 1
+    ports: ["8080:8080"]
+    volumes: [data]
+    depends_on:
+      - db-postgresql16

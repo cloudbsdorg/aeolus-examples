@@ -1,0 +1,17 @@
+# FreeBSD 16 — Indexer manager for *arr
+# Category: media
+version: "1.0"
+name: aeolus-prowlarr
+namespace: demo
+
+volumes:
+  - name: data
+    pool: zfs/aeolus/prowlarr
+    path: /var/aeolus/ensembles/prowlarr/data
+
+services:
+  - name: prowlarr
+    image: oci.cloudbsd.org/aeolus-prowlarr:16
+    replicas: 1
+    ports: ["9696:9696"]
+    volumes: [data]

@@ -1,0 +1,17 @@
+# FreeBSD 16 — llama.cpp server
+# Category: ai
+version: "1.0"
+name: aeolus-llama-cpp
+namespace: demo
+
+volumes:
+  - name: data
+    pool: zfs/aeolus/llama-cpp
+    path: /var/aeolus/ensembles/llama-cpp/data
+
+services:
+  - name: llama-cpp
+    image: oci.cloudbsd.org/aeolus-llama-cpp:16
+    replicas: 1
+    ports: ["8080:8080"]
+    volumes: [data]

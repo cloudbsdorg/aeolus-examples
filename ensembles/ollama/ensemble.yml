@@ -1,0 +1,17 @@
+# FreeBSD 16 — Local LLM runner
+# Category: ai
+version: "1.0"
+name: aeolus-ollama
+namespace: demo
+
+volumes:
+  - name: data
+    pool: zfs/aeolus/ollama
+    path: /var/aeolus/ensembles/ollama/data
+
+services:
+  - name: ollama
+    image: oci.cloudbsd.org/aeolus-ollama:16
+    replicas: 1
+    ports: ["11434:11434"]
+    volumes: [data]

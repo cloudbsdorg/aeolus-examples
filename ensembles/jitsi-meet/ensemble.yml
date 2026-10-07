@@ -1,0 +1,17 @@
+# FreeBSD 16 — Video conferencing
+# Category: collab
+version: "1.0"
+name: aeolus-jitsi-meet
+namespace: demo
+
+volumes:
+  - name: data
+    pool: zfs/aeolus/jitsi-meet
+    path: /var/aeolus/ensembles/jitsi-meet/data
+
+services:
+  - name: jitsi-meet
+    image: oci.cloudbsd.org/aeolus-jitsi-meet:16
+    replicas: 1
+    ports: ["443:443"]
+    volumes: [data]

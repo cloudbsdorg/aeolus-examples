@@ -1,0 +1,17 @@
+# FreeBSD 16 — HTTP reverse proxy / static
+# Category: edge
+version: "1.0"
+name: aeolus-nginx
+namespace: demo
+
+volumes:
+  - name: data
+    pool: zfs/aeolus/nginx
+    path: /var/aeolus/ensembles/nginx/data
+
+services:
+  - name: nginx
+    image: oci.cloudbsd.org/aeolus-nginx:16
+    replicas: 1
+    ports: ["80:80"]
+    volumes: [data]

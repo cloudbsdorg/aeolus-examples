@@ -1,0 +1,17 @@
+# FreeBSD 16 — Video surveillance
+# Category: utility
+version: "1.0"
+name: aeolus-zoneminder
+namespace: demo
+
+volumes:
+  - name: data
+    pool: zfs/aeolus/zoneminder
+    path: /var/aeolus/ensembles/zoneminder/data
+
+services:
+  - name: zoneminder
+    image: oci.cloudbsd.org/aeolus-zoneminder:16
+    replicas: 1
+    ports: ["80:80"]
+    volumes: [data]

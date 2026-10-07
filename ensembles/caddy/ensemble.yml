@@ -1,0 +1,17 @@
+# FreeBSD 16 — Automatic-HTTPS reverse proxy
+# Category: edge
+version: "1.0"
+name: aeolus-caddy
+namespace: demo
+
+volumes:
+  - name: data
+    pool: zfs/aeolus/caddy
+    path: /var/aeolus/ensembles/caddy/data
+
+services:
+  - name: caddy
+    image: oci.cloudbsd.org/aeolus-caddy:16
+    replicas: 1
+    ports: ["80:80"]
+    volumes: [data]

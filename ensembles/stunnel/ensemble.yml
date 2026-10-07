@@ -1,0 +1,17 @@
+# FreeBSD 16 — TLS wrapper
+# Category: edge
+version: "1.0"
+name: aeolus-stunnel
+namespace: demo
+
+volumes:
+  - name: data
+    pool: zfs/aeolus/stunnel
+    path: /var/aeolus/ensembles/stunnel/data
+
+services:
+  - name: stunnel
+    image: oci.cloudbsd.org/aeolus-stunnel:16
+    replicas: 1
+    ports: ["443:443"]
+    volumes: [data]

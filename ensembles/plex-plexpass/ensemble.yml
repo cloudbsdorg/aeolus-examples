@@ -1,0 +1,17 @@
+# FreeBSD 16 — Plex Pass / early-access channel
+# Category: media
+version: "1.0"
+name: aeolus-plex-plexpass
+namespace: demo
+
+volumes:
+  - name: data
+    pool: zfs/aeolus/plex-plexpass
+    path: /var/aeolus/ensembles/plex-plexpass/data
+
+services:
+  - name: plex-plexpass
+    image: oci.cloudbsd.org/aeolus-plex-plexpass:16
+    replicas: 1
+    ports: ["32400:32400"]
+    volumes: [data]

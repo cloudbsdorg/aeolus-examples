@@ -1,0 +1,17 @@
+# FreeBSD 16 — Real-time host metrics
+# Category: observe
+version: "1.0"
+name: aeolus-netdata
+namespace: demo
+
+volumes:
+  - name: data
+    pool: zfs/aeolus/netdata
+    path: /var/aeolus/ensembles/netdata/data
+
+services:
+  - name: netdata
+    image: oci.cloudbsd.org/aeolus-netdata:16
+    replicas: 1
+    ports: ["19999:19999"]
+    volumes: [data]

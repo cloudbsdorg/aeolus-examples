@@ -1,0 +1,17 @@
+# FreeBSD 16 — LLM proxy / gateway
+# Category: ai
+version: "1.0"
+name: aeolus-litellm
+namespace: demo
+
+volumes:
+  - name: data
+    pool: zfs/aeolus/litellm
+    path: /var/aeolus/ensembles/litellm/data
+
+services:
+  - name: litellm
+    image: oci.cloudbsd.org/aeolus-litellm:16
+    replicas: 1
+    ports: ["4000:4000"]
+    volumes: [data]

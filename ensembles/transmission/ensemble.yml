@@ -1,0 +1,17 @@
+# FreeBSD 16 — BitTorrent daemon
+# Category: download
+version: "1.0"
+name: aeolus-transmission
+namespace: demo
+
+volumes:
+  - name: data
+    pool: zfs/aeolus/transmission
+    path: /var/aeolus/ensembles/transmission/data
+
+services:
+  - name: transmission
+    image: oci.cloudbsd.org/aeolus-transmission:16
+    replicas: 1
+    ports: ["9091:9091"]
+    volumes: [data]

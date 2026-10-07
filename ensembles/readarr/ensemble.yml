@@ -1,0 +1,17 @@
+# FreeBSD 16 — Ebook / audiobook manager
+# Category: media
+version: "1.0"
+name: aeolus-readarr
+namespace: demo
+
+volumes:
+  - name: data
+    pool: zfs/aeolus/readarr
+    path: /var/aeolus/ensembles/readarr/data
+
+services:
+  - name: readarr
+    image: oci.cloudbsd.org/aeolus-readarr:16
+    replicas: 1
+    ports: ["8787:8787"]
+    volumes: [data]

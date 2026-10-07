@@ -1,0 +1,17 @@
+# FreeBSD 16 — UniFi Network Application
+# Category: network
+version: "1.0"
+name: aeolus-unifi
+namespace: demo
+
+volumes:
+  - name: data
+    pool: zfs/aeolus/unifi
+    path: /var/aeolus/ensembles/unifi/data
+
+services:
+  - name: unifi
+    image: oci.cloudbsd.org/aeolus-unifi:16
+    replicas: 1
+    ports: ["8443:8443"]
+    volumes: [data]

@@ -1,0 +1,17 @@
+# FreeBSD 16 — NATS messaging
+# Category: data
+version: "1.0"
+name: aeolus-nats
+namespace: demo
+
+volumes:
+  - name: data
+    pool: zfs/aeolus/nats
+    path: /var/aeolus/ensembles/nats/data
+
+services:
+  - name: nats
+    image: oci.cloudbsd.org/aeolus-nats:16
+    replicas: 1
+    ports: ["4222:4222"]
+    volumes: [data]

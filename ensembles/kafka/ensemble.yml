@@ -1,0 +1,17 @@
+# FreeBSD 16 — Apache Kafka broker
+# Category: data
+version: "1.0"
+name: aeolus-kafka
+namespace: demo
+
+volumes:
+  - name: data
+    pool: zfs/aeolus/kafka
+    path: /var/aeolus/ensembles/kafka/data
+
+services:
+  - name: kafka
+    image: oci.cloudbsd.org/aeolus-kafka:16
+    replicas: 1
+    ports: ["9092:9092"]
+    volumes: [data]

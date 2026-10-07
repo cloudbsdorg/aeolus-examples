@@ -1,0 +1,17 @@
+# FreeBSD 16 — Git forge (Gitea soft-fork)
+# Category: devtools
+version: "1.0"
+name: aeolus-forgejo
+namespace: demo
+
+volumes:
+  - name: data
+    pool: zfs/aeolus/forgejo
+    path: /var/aeolus/ensembles/forgejo/data
+
+services:
+  - name: forgejo
+    image: oci.cloudbsd.org/aeolus-forgejo:16
+    replicas: 1
+    ports: ["3000:3000"]
+    volumes: [data]

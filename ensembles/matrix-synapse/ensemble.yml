@@ -1,0 +1,17 @@
+# FreeBSD 16 — Matrix homeserver
+# Category: collab
+version: "1.0"
+name: aeolus-matrix-synapse
+namespace: demo
+
+volumes:
+  - name: data
+    pool: zfs/aeolus/matrix-synapse
+    path: /var/aeolus/ensembles/matrix-synapse/data
+
+services:
+  - name: matrix-synapse
+    image: oci.cloudbsd.org/aeolus-matrix-synapse:16
+    replicas: 1
+    ports: ["8008:8008"]
+    volumes: [data]

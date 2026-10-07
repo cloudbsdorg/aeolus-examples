@@ -1,0 +1,17 @@
+# FreeBSD 16 — ZooKeeper (often with Kafka)
+# Category: data
+version: "1.0"
+name: aeolus-zookeeper
+namespace: demo
+
+volumes:
+  - name: data
+    pool: zfs/aeolus/zookeeper
+    path: /var/aeolus/ensembles/zookeeper/data
+
+services:
+  - name: zookeeper
+    image: oci.cloudbsd.org/aeolus-zookeeper:16
+    replicas: 1
+    ports: ["2181:2181"]
+    volumes: [data]

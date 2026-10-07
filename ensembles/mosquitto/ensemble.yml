@@ -1,0 +1,17 @@
+# FreeBSD 16 — MQTT broker
+# Category: data
+version: "1.0"
+name: aeolus-mosquitto
+namespace: demo
+
+volumes:
+  - name: data
+    pool: zfs/aeolus/mosquitto
+    path: /var/aeolus/ensembles/mosquitto/data
+
+services:
+  - name: mosquitto
+    image: oci.cloudbsd.org/aeolus-mosquitto:16
+    replicas: 1
+    ports: ["1883:1883"]
+    volumes: [data]

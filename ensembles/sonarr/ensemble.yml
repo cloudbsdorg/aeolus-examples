@@ -1,0 +1,17 @@
+# FreeBSD 16 — TV library manager
+# Category: media
+version: "1.0"
+name: aeolus-sonarr
+namespace: demo
+
+volumes:
+  - name: data
+    pool: zfs/aeolus/sonarr
+    path: /var/aeolus/ensembles/sonarr/data
+
+services:
+  - name: sonarr
+    image: oci.cloudbsd.org/aeolus-sonarr:16
+    replicas: 1
+    ports: ["8989:8989"]
+    volumes: [data]

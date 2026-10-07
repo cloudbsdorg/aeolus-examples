@@ -1,0 +1,17 @@
+# FreeBSD 16 — Photo gallery
+# Category: utility
+version: "1.0"
+name: aeolus-piwigo
+namespace: demo
+
+volumes:
+  - name: data
+    pool: zfs/aeolus/piwigo
+    path: /var/aeolus/ensembles/piwigo/data
+
+services:
+  - name: piwigo
+    image: oci.cloudbsd.org/aeolus-piwigo:16
+    replicas: 1
+    ports: ["80:80"]
+    volumes: [data]

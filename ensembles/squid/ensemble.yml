@@ -1,0 +1,17 @@
+# FreeBSD 16 — Caching forward proxy
+# Category: edge
+version: "1.0"
+name: aeolus-squid
+namespace: demo
+
+volumes:
+  - name: data
+    pool: zfs/aeolus/squid
+    path: /var/aeolus/ensembles/squid/data
+
+services:
+  - name: squid
+    image: oci.cloudbsd.org/aeolus-squid:16
+    replicas: 1
+    ports: ["3128:3128"]
+    volumes: [data]

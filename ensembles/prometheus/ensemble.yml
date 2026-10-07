@@ -1,0 +1,17 @@
+# FreeBSD 16 — Metrics
+# Category: observe
+version: "1.0"
+name: aeolus-prometheus
+namespace: demo
+
+volumes:
+  - name: data
+    pool: zfs/aeolus/prometheus
+    path: /var/aeolus/ensembles/prometheus/data
+
+services:
+  - name: prometheus
+    image: oci.cloudbsd.org/aeolus-prometheus:16
+    replicas: 1
+    ports: ["9090:9090"]
+    volumes: [data]

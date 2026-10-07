@@ -1,0 +1,17 @@
+# FreeBSD 16 — BitTorrent (headless)
+# Category: download
+version: "1.0"
+name: aeolus-qbittorrent
+namespace: demo
+
+volumes:
+  - name: data
+    pool: zfs/aeolus/qbittorrent
+    path: /var/aeolus/ensembles/qbittorrent/data
+
+services:
+  - name: qbittorrent
+    image: oci.cloudbsd.org/aeolus-qbittorrent:16
+    replicas: 1
+    ports: ["8080:8080"]
+    volumes: [data]

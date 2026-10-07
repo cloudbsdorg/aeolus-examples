@@ -1,0 +1,17 @@
+# FreeBSD 16 — Music library manager
+# Category: media
+version: "1.0"
+name: aeolus-lidarr
+namespace: demo
+
+volumes:
+  - name: data
+    pool: zfs/aeolus/lidarr
+    path: /var/aeolus/ensembles/lidarr/data
+
+services:
+  - name: lidarr
+    image: oci.cloudbsd.org/aeolus-lidarr:16
+    replicas: 1
+    ports: ["8686:8686"]
+    volumes: [data]

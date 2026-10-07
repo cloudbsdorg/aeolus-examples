@@ -1,0 +1,17 @@
+# FreeBSD 16 — Owncast live streaming
+# Category: media
+version: "1.0"
+name: aeolus-owncast
+namespace: demo
+
+volumes:
+  - name: data
+    pool: zfs/aeolus/owncast
+    path: /var/aeolus/ensembles/owncast/data
+
+services:
+  - name: owncast
+    image: oci.cloudbsd.org/aeolus-owncast:16
+    replicas: 1
+    ports: ["8080:8080"]
+    volumes: [data]

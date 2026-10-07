@@ -1,0 +1,17 @@
+# FreeBSD 16 — Movie library manager
+# Category: media
+version: "1.0"
+name: aeolus-radarr
+namespace: demo
+
+volumes:
+  - name: data
+    pool: zfs/aeolus/radarr
+    path: /var/aeolus/ensembles/radarr/data
+
+services:
+  - name: radarr
+    image: oci.cloudbsd.org/aeolus-radarr:16
+    replicas: 1
+    ports: ["7878:7878"]
+    volumes: [data]

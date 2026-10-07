@@ -1,0 +1,17 @@
+# FreeBSD 16 — Cloud-native edge router
+# Category: edge
+version: "1.0"
+name: aeolus-traefik
+namespace: demo
+
+volumes:
+  - name: data
+    pool: zfs/aeolus/traefik
+    path: /var/aeolus/ensembles/traefik/data
+
+services:
+  - name: traefik
+    image: oci.cloudbsd.org/aeolus-traefik:16
+    replicas: 1
+    ports: ["8080:8080"]
+    volumes: [data]

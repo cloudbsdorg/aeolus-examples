@@ -1,0 +1,17 @@
+# FreeBSD 16 — Usenet downloader
+# Category: download
+version: "1.0"
+name: aeolus-sabnzbd
+namespace: demo
+
+volumes:
+  - name: data
+    pool: zfs/aeolus/sabnzbd
+    path: /var/aeolus/ensembles/sabnzbd/data
+
+services:
+  - name: sabnzbd
+    image: oci.cloudbsd.org/aeolus-sabnzbd:16
+    replicas: 1
+    ports: ["8080:8080"]
+    volumes: [data]

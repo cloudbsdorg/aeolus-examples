@@ -1,0 +1,17 @@
+# FreeBSD 16 — Dashboards
+# Category: observe
+version: "1.0"
+name: aeolus-grafana
+namespace: demo
+
+volumes:
+  - name: data
+    pool: zfs/aeolus/grafana
+    path: /var/aeolus/ensembles/grafana/data
+
+services:
+  - name: grafana
+    image: oci.cloudbsd.org/aeolus-grafana:16
+    replicas: 1
+    ports: ["3000:3000"]
+    volumes: [data]

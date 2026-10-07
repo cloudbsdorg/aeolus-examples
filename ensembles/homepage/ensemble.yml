@@ -1,0 +1,17 @@
+# FreeBSD 16 — Service dashboard
+# Category: observe
+version: "1.0"
+name: aeolus-homepage
+namespace: demo
+
+volumes:
+  - name: data
+    pool: zfs/aeolus/homepage
+    path: /var/aeolus/ensembles/homepage/data
+
+services:
+  - name: homepage
+    image: oci.cloudbsd.org/aeolus-homepage:16
+    replicas: 1
+    ports: ["3000:3000"]
+    volumes: [data]

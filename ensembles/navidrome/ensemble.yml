@@ -1,0 +1,17 @@
+# FreeBSD 16 — Music streaming (Airsonic-class)
+# Category: media
+version: "1.0"
+name: aeolus-navidrome
+namespace: demo
+
+volumes:
+  - name: data
+    pool: zfs/aeolus/navidrome
+    path: /var/aeolus/ensembles/navidrome/data
+
+services:
+  - name: navidrome
+    image: oci.cloudbsd.org/aeolus-navidrome:16
+    replicas: 1
+    ports: ["4533:4533"]
+    volumes: [data]

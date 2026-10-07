@@ -1,0 +1,17 @@
+# FreeBSD 16 — Search engine
+# Category: data
+version: "1.0"
+name: aeolus-meilisearch
+namespace: demo
+
+volumes:
+  - name: data
+    pool: zfs/aeolus/meilisearch
+    path: /var/aeolus/ensembles/meilisearch/data
+
+services:
+  - name: meilisearch
+    image: oci.cloudbsd.org/aeolus-meilisearch:16
+    replicas: 1
+    ports: ["7700:7700"]
+    volumes: [data]

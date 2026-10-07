@@ -1,0 +1,17 @@
+# FreeBSD 16 — Subtitle companion for *arr
+# Category: media
+version: "1.0"
+name: aeolus-bazarr
+namespace: demo
+
+volumes:
+  - name: data
+    pool: zfs/aeolus/bazarr
+    path: /var/aeolus/ensembles/bazarr/data
+
+services:
+  - name: bazarr
+    image: oci.cloudbsd.org/aeolus-bazarr:16
+    replicas: 1
+    ports: ["6767:6767"]
+    volumes: [data]

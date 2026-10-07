@@ -1,0 +1,17 @@
+# FreeBSD 16 — Lightweight ActivityPub
+# Category: social
+version: "1.0"
+name: aeolus-gotosocial
+namespace: demo
+
+volumes:
+  - name: data
+    pool: zfs/aeolus/gotosocial
+    path: /var/aeolus/ensembles/gotosocial/data
+
+services:
+  - name: gotosocial
+    image: oci.cloudbsd.org/aeolus-gotosocial:16
+    replicas: 1
+    ports: ["8080:8080"]
+    volumes: [data]

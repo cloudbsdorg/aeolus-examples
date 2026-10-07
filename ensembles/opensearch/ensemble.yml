@@ -1,0 +1,17 @@
+# FreeBSD 16 — Search / analytics (Mastodon optional)
+# Category: data
+version: "1.0"
+name: aeolus-opensearch
+namespace: demo
+
+volumes:
+  - name: data
+    pool: zfs/aeolus/opensearch
+    path: /var/aeolus/ensembles/opensearch/data
+
+services:
+  - name: opensearch
+    image: oci.cloudbsd.org/aeolus-opensearch:16
+    replicas: 1
+    ports: ["9200:9200"]
+    volumes: [data]

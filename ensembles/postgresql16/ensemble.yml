@@ -1,0 +1,17 @@
+# FreeBSD 16 — PostgreSQL 16
+# Category: data
+version: "1.0"
+name: aeolus-postgresql16
+namespace: demo
+
+volumes:
+  - name: data
+    pool: zfs/aeolus/postgresql16
+    path: /var/aeolus/ensembles/postgresql16/data
+
+services:
+  - name: postgresql16
+    image: oci.cloudbsd.org/aeolus-postgresql16:16
+    replicas: 1
+    ports: ["5432:5432"]
+    volumes: [data]

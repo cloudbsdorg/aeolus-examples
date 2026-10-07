@@ -1,0 +1,17 @@
+# FreeBSD 16 — Bitwarden-compatible vault
+# Category: security
+version: "1.0"
+name: aeolus-vaultwarden
+namespace: demo
+
+volumes:
+  - name: data
+    pool: zfs/aeolus/vaultwarden
+    path: /var/aeolus/ensembles/vaultwarden/data
+
+services:
+  - name: vaultwarden
+    image: oci.cloudbsd.org/aeolus-vaultwarden:16
+    replicas: 1
+    ports: ["8080:8080"]
+    volumes: [data]

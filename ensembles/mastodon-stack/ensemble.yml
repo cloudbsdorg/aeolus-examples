@@ -1,0 +1,28 @@
+# FreeBSD 16 — Mastodon + Postgres + Redis (supporting services).
+version: "1.0"
+name: aeolus-mastodon-stack
+namespace: demo
+
+volumes:
+  - name: mastodon-data
+    pool: zfs/aeolus/mastodon
+    path: /var/aeolus/ensembles/mastodon/app
+  - name: pg-data
+    pool: zfs/aeolus/mastodon
+    path: /var/aeolus/ensembles/mastodon/pg
+  - name: redis-data
+    pool: zfs/aeolus/mastodon
+    path: /var/aeolus/ensembles/mastodon/redis
+
+services:
+  - name: postgresql
+    image: oci.cloudbsd.org/aeolus-postgresql16:16
+    volumes: [pg-data]
+  - name: redis
+    image: oci.cloudbsd.org/aeolus-redis:16
+    volumes: [redis-data]
+  - name: mastodon
+    image: oci.cloudbsd.org/aeolus-mastodon:16
+    depends_on: [postgresql, redis]
+    ports: ["3000:3000"]
+    volumes: [mastodon-data]

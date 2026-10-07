@@ -1,0 +1,17 @@
+# FreeBSD 16 — Node-based image gen UI
+# Category: ai
+version: "1.0"
+name: aeolus-comfyui
+namespace: demo
+
+volumes:
+  - name: data
+    pool: zfs/aeolus/comfyui
+    path: /var/aeolus/ensembles/comfyui/data
+
+services:
+  - name: comfyui
+    image: oci.cloudbsd.org/aeolus-comfyui:16
+    replicas: 1
+    ports: ["8188:8188"]
+    volumes: [data]

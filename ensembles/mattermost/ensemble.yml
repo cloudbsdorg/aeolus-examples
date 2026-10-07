@@ -1,0 +1,17 @@
+# FreeBSD 16 — Team chat
+# Category: collab
+version: "1.0"
+name: aeolus-mattermost
+namespace: demo
+
+volumes:
+  - name: data
+    pool: zfs/aeolus/mattermost
+    path: /var/aeolus/ensembles/mattermost/data
+
+services:
+  - name: mattermost
+    image: oci.cloudbsd.org/aeolus-mattermost:16
+    replicas: 1
+    ports: ["8065:8065"]
+    volumes: [data]

@@ -1,0 +1,17 @@
+# FreeBSD 16 — Ampache media server
+# Category: media
+version: "1.0"
+name: aeolus-ampache
+namespace: demo
+
+volumes:
+  - name: data
+    pool: zfs/aeolus/ampache
+    path: /var/aeolus/ensembles/ampache/data
+
+services:
+  - name: ampache
+    image: oci.cloudbsd.org/aeolus-ampache:16
+    replicas: 1
+    ports: ["80:80"]
+    volumes: [data]

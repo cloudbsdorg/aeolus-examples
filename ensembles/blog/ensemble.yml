@@ -14,14 +14,14 @@ volumes:
 
 services:
   - name: db
-    image: ghcr.io/cloudbsdorg/aeolus-mariadb:16
+    image: oci.cloudbsd.org/aeolus-mariadb:16
     replicas: 1
     volumes: [db-data]
     # secretRef:
     #   - ladon: demo/db/password
     #     env: MYSQL_PASSWORD
   - name: wordpress
-    image: ghcr.io/cloudbsdorg/aeolus-wordpress:16
+    image: oci.cloudbsd.org/aeolus-wordpress:16
     replicas: 2
     depends_on: [db]
     ports: ["8080:80"]

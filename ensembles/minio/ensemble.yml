@@ -1,0 +1,17 @@
+# FreeBSD 16 — S3-compatible object storage
+# Category: data
+version: "1.0"
+name: aeolus-minio
+namespace: demo
+
+volumes:
+  - name: data
+    pool: zfs/aeolus/minio
+    path: /var/aeolus/ensembles/minio/data
+
+services:
+  - name: minio
+    image: oci.cloudbsd.org/aeolus-minio:16
+    replicas: 1
+    ports: ["9000:9000"]
+    volumes: [data]

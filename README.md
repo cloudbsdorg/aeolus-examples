@@ -1,49 +1,66 @@
 # Aeolus examples — FreeBSD 16 OCI images
 
-Public recipes for **FreeBSD 16** demo images used with [Aeolus](https://aeolus.cloudbsd.org/).
-Linux Hub tags are **not** the story — these images are FreeBSD packages on
+Public **source** recipes for FreeBSD 16 demo images used with
+[Aeolus](https://aeolus.cloudbsd.org/). GitHub holds the stash only — **builds and
+the image registry run on our infra** (freedev / Jenkins / fleet registry).
+
+Base runtime (upstream public):  
 [`ghcr.io/freebsd/freebsd-runtime:16.snap`](https://ghcr.io/freebsd/freebsd-runtime:16.snap).
 
-| Image | Packages (approx.) | Tag |
-|-------|--------------------|-----|
-| `aeolus-mariadb` | mariadb1011-server | `ghcr.io/cloudbsdorg/aeolus-mariadb:16` |
-| `aeolus-wordpress` | nginx php85-* wordpress | `ghcr.io/cloudbsdorg/aeolus-wordpress:16` |
-| `aeolus-memcached` | memcached | `ghcr.io/cloudbsdorg/aeolus-memcached:16` |
-| `aeolus-redis` | redis | `ghcr.io/cloudbsdorg/aeolus-redis:16` |
-| `aeolus-gitea` | gitea git | `ghcr.io/cloudbsdorg/aeolus-gitea:16` |
-| `aeolus-nextcloud` | nextcloud-php85 | `ghcr.io/cloudbsdorg/aeolus-nextcloud:16` |
-| `aeolus-jellyfin` | jellyfin (+ ffmpeg deps) | `ghcr.io/cloudbsdorg/aeolus-jellyfin:16` |
-| `aeolus-emby-server` | emby-server | `ghcr.io/cloudbsdorg/aeolus-emby-server:16` |
+**Full inventory:** [`CATALOG.md`](CATALOG.md).
 
-Wave-1 app ensembles (Track #902): [`ensembles/gitea`](ensembles/gitea/ensemble.yml),
-[`nextcloud`](ensembles/nextcloud/ensemble.yml), [`jellyfin`](ensembles/jellyfin/ensemble.yml),
-[`emby`](ensembles/emby/ensemble.yml). Prefer **Nextcloud** over OwnCloud.
+## Catalog highlights
 
-## Build (FreeBSD / CloudBSD host with podman or buildah)
+| Area | Examples |
+|------|----------|
+| Edge / proxies | nginx, apache24, haproxy, caddy, traefik, squid, stunnel |
+| Data / messaging | kafka (+ zookeeper), rabbitmq, nats, mosquitto, postgres 16/17, redis, minio, meilisearch, opensearch |
+| Collab / social | mattermost, mastodon (+ stack), gotosocial, matrix-synapse, jitsi-meet |
+| AI | ollama, llama-cpp, whisper-cpp, comfyui, litellm (+ `ensembles/ai-stack`) |
+| Media / *arr | plex (+ plexpass), jellyfin, emby, navidrome, sonarr/radarr/lidarr/prowlarr/bazarr/readarr, calibre |
+| Downloaders | qbittorrent, transmission, sabnzbd |
+| Network / NAS-class | **unifi** (unifi10), syncthing, nextcloud, zoneminder, piwigo, bacula-server |
+| Dev / security | gitea, forgejo, vaultwarden, keycloak |
+| Observe | grafana, prometheus, netdata, uptime-kuma, homepage |
+| Baseline blog | wordpress, mariadb, memcached, redis |
+
+Gaps (no FreeBSD pkg yet): Home Assistant, Open WebUI, Airsonic→use navidrome, PeerTube (deps image + docs). See CATALOG.md.
+
+## Build & publish (our FreeBSD builders)
+
+GitHub does not build FreeBSD. Hooks there only keep Track + code review honest.
+Build and push on our hosts:
 
 ```sh
-# Example: mariadb layer
-podman build --squash \
-  --build-arg BASE=ghcr.io/freebsd/freebsd-runtime:16.snap \
-  -t ghcr.io/cloudbsdorg/aeolus-mariadb:16 \
-  -f images/mariadb/Containerfile images/mariadb
+# On a FreeBSD/CloudBSD builder (root):
+sudo scripts/build-all.sh                 # → out/aeolus-*-16.tar + local tags
+sudo scripts/build-all.sh ollama unifi nginx
 
-# Or use the upstream pkg-extend pattern:
-#   share/examples/oci/Containerfile.pkg in cloudbsd-src
+# Push to our OCI registry (default REGISTRY=oci.cloudbsd.org):
+sudo scripts/push-registry.sh
+sudo scripts/push-registry.sh ollama unifi
 ```
 
-Rebuild the base runtime yourself via FreeBSD `release/Makefile.oci` /
-`WITH_OCIIMAGES=1` when you need a local CA or pinned tip — see FreeBSD Handbook
-ch. 18 and `cloudbsd-src/release/scripts/make-oci-image.sh`.
+Tag shape: `${REGISTRY}/aeolus-<name>:16`.
 
-## Ensemble
+## Manual Containerfile notes
 
-See [`ensembles/blog/ensemble.yml`](ensembles/blog/ensemble.yml) — `namespace: demo`,
-default pod `aeolus-blog-default`, FreeBSD 16 image refs, Ladon `secretRef` comments.
+Upstream pkg-extend pattern: `share/examples/oci/Containerfile.pkg` in
+cloudbsd-src. Rebuild the FreeBSD runtime via `release/Makefile.oci` /
+`WITH_OCIIMAGES=1` when you need a local CA or pinned tip — Handbook ch. 18.
 
-Secrets: [Ladon](https://ladon.revytechinc.com/) (`ladon.cloudbsd.org` redirects).
+## Ensembles
+
+Single-app YAML under [`ensembles/<name>/`](ensembles/). Stacks:
+
+- [`ensembles/blog`](ensembles/blog/ensemble.yml) — WordPress HA-shaped demo
+- [`ensembles/mastodon-stack`](ensembles/mastodon-stack/ensemble.yml) — Mastodon + Postgres + Redis
+- [`ensembles/kafka-stack`](ensembles/kafka-stack/ensemble.yml) — Kafka + ZooKeeper
+- [`ensembles/ai-stack`](ensembles/ai-stack/ensemble.yml) — Ollama + LiteLLM
+
+Composition / registry: Track #970 (includes), #973 (local ensemble registry).  
+Secrets: [Ladon](https://ladon.revytechinc.com/).
 
 ## Smoke bundles
 
-`bundles/` documents how to mint tiny OCI bundles (`true` / `sleep` / `echo`) from
-the FreeBSD 16 runtime rootfs for `aeolus create` lifecycle demos.
+`bundles/` — tiny OCI bundles for `aeolus create` lifecycle demos.

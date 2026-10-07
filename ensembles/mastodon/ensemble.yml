@@ -1,0 +1,17 @@
+# FreeBSD 16 — ActivityPub social — needs Postgres+Redis
+# Category: social
+version: "1.0"
+name: aeolus-mastodon
+namespace: demo
+
+volumes:
+  - name: data
+    pool: zfs/aeolus/mastodon
+    path: /var/aeolus/ensembles/mastodon/data
+
+services:
+  - name: mastodon
+    image: oci.cloudbsd.org/aeolus-mastodon:16
+    replicas: 1
+    ports: ["3000:3000"]
+    volumes: [data]

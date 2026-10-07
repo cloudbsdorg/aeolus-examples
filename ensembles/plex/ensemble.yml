@@ -1,0 +1,17 @@
+# FreeBSD 16 — Plex Media Server
+# Category: media
+version: "1.0"
+name: aeolus-plex
+namespace: demo
+
+volumes:
+  - name: data
+    pool: zfs/aeolus/plex
+    path: /var/aeolus/ensembles/plex/data
+
+services:
+  - name: plex
+    image: oci.cloudbsd.org/aeolus-plex:16
+    replicas: 1
+    ports: ["32400:32400"]
+    volumes: [data]

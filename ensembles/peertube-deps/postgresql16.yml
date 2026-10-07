@@ -1,0 +1,12 @@
+version: "1.0"
+name: peertube-postgresql16
+volumes:
+  - name: data
+    pool: zfs/aeolus/peertube-deps
+    path: /var/aeolus/ensembles/peertube-deps/db
+services:
+  - name: postgresql16
+    image: oci.cloudbsd.org/aeolus-postgresql16:16
+    replicas: 1
+    volumes:
+      - data

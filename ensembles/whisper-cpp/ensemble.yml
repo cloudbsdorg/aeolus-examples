@@ -1,0 +1,17 @@
+# FreeBSD 16 — Local speech-to-text
+# Category: ai
+version: "1.0"
+name: aeolus-whisper-cpp
+namespace: demo
+
+volumes:
+  - name: data
+    pool: zfs/aeolus/whisper-cpp
+    path: /var/aeolus/ensembles/whisper-cpp/data
+
+services:
+  - name: whisper-cpp
+    image: oci.cloudbsd.org/aeolus-whisper-cpp:16
+    replicas: 1
+    ports: ["8080:8080"]
+    volumes: [data]

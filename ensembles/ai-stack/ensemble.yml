@@ -1,0 +1,19 @@
+# FreeBSD 16 — Ollama + LiteLLM gateway (AI stack starter)
+version: "1.0"
+name: aeolus-ai-stack
+namespace: demo
+
+volumes:
+  - name: ollama-models
+    pool: zfs/aeolus/ai
+    path: /var/aeolus/ensembles/ai/ollama
+
+services:
+  - name: ollama
+    image: oci.cloudbsd.org/aeolus-ollama:16
+    ports: ["11434:11434"]
+    volumes: [ollama-models]
+  - name: litellm
+    image: oci.cloudbsd.org/aeolus-litellm:16
+    depends_on: [ollama]
+    ports: ["4000:4000"]
