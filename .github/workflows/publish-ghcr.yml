@@ -1,0 +1,58 @@
+# Publish docker-archive release assets → ghcr.io/cloudbsdorg/aeolus-*:16
+# Track #877. Build FreeBSD images off-GHA (scripts/build-all.sh on FreeBSD),
+# attach *.tar to a release named images-16 or v16.*, then this workflow pushes.
+name: publish-ghcr
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: Release tag that holds aeolus-*-16.tar assets
+        required: true
+        default: images-16
+
+permissions:
+  contents: read
+  packages: write
+
+jobs:
+  push:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        image:
+          - mariadb
+          - wordpress
+          - memcached
+          - redis
+          - gitea
+          - nextcloud
+          - jellyfin
+          - emby-server
+    steps:
+      - name: Install skopeo
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq skopeo
+
+      - name: Download archive from release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -eux
+          TAG='${{ github.event.release.tag_name || inputs.tag }}'
+          ASSET="aeolus-${{ matrix.image }}-16.tar"
+          gh release download "$TAG" -R "${{ github.repository }}" -p "$ASSET"
+          ls -lh "$ASSET"
+
+      - name: Push to GHCR
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -eux
+          ASSET="aeolus-${{ matrix.image }}-16.tar"
+          REF="ghcr.io/cloudbsdorg/aeolus-${{ matrix.image }}:16"
+          echo "$GH_TOKEN" | skopeo login ghcr.io -u "${{ github.actor }}" --password-stdin
+          skopeo copy "docker-archive:${ASSET}" "docker://${REF}"
+          skopeo inspect "docker://${REF}" | head -c 500
