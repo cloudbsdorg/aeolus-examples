@@ -24,7 +24,7 @@ BASE=${BASE:-ghcr.io/freebsd/freebsd-runtime:16.snap}
 REGISTRY=${REGISTRY:-oci.cloudbsd.org}
 TAG=${TAG:-16}
 OUTDIR=${OUTDIR:-"$ROOT/out"}
-ALL="nginx apache24 haproxy caddy traefik squid stunnel kafka zookeeper rabbitmq nats mosquitto postgresql16 postgresql17 redis mariadb memcached minio meilisearch opensearch mattermost mastodon gotosocial matrix-synapse jitsi-meet ollama llama-cpp whisper-cpp comfyui litellm plex plex-plexpass jellyfin emby-server navidrome sonarr radarr lidarr prowlarr bazarr readarr calibre qbittorrent transmission sabnzbd unifi syncthing nextcloud zoneminder piwigo bacula-server gitea forgejo vaultwarden keycloak wordpress grafana prometheus netdata uptime-kuma homepage"
+ALL="nginx apache24 haproxy caddy traefik squid stunnel kafka zookeeper rabbitmq nats mosquitto postgresql16 postgresql17 redis mariadb memcached minio meilisearch opensearch mattermost mastodon gotosocial matrix-synapse jitsi-meet ollama llama-cpp whisper-cpp comfyui litellm plex plex-plexpass jellyfin emby-server navidrome owncast ampache sonarr radarr lidarr prowlarr bazarr readarr calibre qbittorrent transmission sabnzbd unifi syncthing nextcloud zoneminder piwigo bacula-server gitea forgejo vaultwarden keycloak wordpress grafana prometheus netdata uptime-kuma homepage"
 
 case "$TAG" in
 *[!A-Za-z0-9._-]*)
