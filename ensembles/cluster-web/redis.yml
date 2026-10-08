@@ -1,0 +1,12 @@
+# Fragment included by cluster-web (same directory — include confinement).
+version: "1.0"
+name: cluster-redis
+volumes:
+  - name: data
+    pool: zfs/aeolus/cluster-web
+    path: /var/aeolus/ensembles/cluster-web/cache
+services:
+  - name: redis
+    image: oci.cloudbsd.org/aeolus-redis:16
+    replicas: 1
+    volumes: [data]

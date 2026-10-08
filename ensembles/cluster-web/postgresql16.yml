@@ -1,0 +1,12 @@
+# Fragment included by cluster-web (same directory — include confinement).
+version: "1.0"
+name: cluster-postgresql16
+volumes:
+  - name: data
+    pool: zfs/aeolus/cluster-web
+    path: /var/aeolus/ensembles/cluster-web/db
+services:
+  - name: postgresql16
+    image: oci.cloudbsd.org/aeolus-postgresql16:16
+    replicas: 1
+    volumes: [data]

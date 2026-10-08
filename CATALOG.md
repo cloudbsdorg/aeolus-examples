@@ -140,6 +140,9 @@ TrueNAS CORE plugins are obsolete; this list mirrors common NAS/lab apps that ex
 | `ensembles/mastodon-stack` | mastodon + postgresql16 + redis |
 | `ensembles/kafka-stack` | kafka + zookeeper |
 | `ensembles/ai-stack` | ollama + litellm |
+| `ensembles/cluster-web` | nginx + postgresql16 + redis via includes |
+| `ensembles/owncast-stack` | owncast + postgresql16 via includes |
+| `ensembles/peertube-deps` | nginx + postgresql16 + redis via includes (no peertube pkg) |
 
 ## Not in ports (yet)
 

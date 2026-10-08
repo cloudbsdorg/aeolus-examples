@@ -1,0 +1,24 @@
+# FreeBSD 16 — web tier plus Postgres and Redis via ensemble includes
+# Category: edge
+version: "1.0"
+name: aeolus-cluster-web
+namespace: demo
+
+includes:
+  - path: postgresql16.yml
+    as: db
+  - path: redis.yml
+    as: cache
+
+volumes:
+  - name: web
+    pool: zfs/aeolus/cluster-web
+    path: /var/aeolus/ensembles/cluster-web/web
+
+services:
+  - name: nginx
+    image: oci.cloudbsd.org/aeolus-nginx:16
+    replicas: 1
+    ports: ["80:80"]
+    volumes: [web]
+    depends_on: [db-postgresql16, cache-redis]
