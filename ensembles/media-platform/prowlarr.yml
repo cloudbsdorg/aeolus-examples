@@ -1,0 +1,13 @@
+# Fragment included by media-platform (same directory — include confinement).
+version: "1.0"
+name: platform-prowlarr
+volumes:
+  - name: prowlarr-data
+    pool: zfs/aeolus/media-platform
+    path: /var/aeolus/ensembles/media-platform/prowlarr
+services:
+  - name: prowlarr
+    image: oci.cloudbsd.org/aeolus-prowlarr:16
+    replicas: 1
+    ports: ["9696:9696"]
+    volumes: [prowlarr-data]

@@ -1,0 +1,13 @@
+# Fragment included by media-platform (same directory — include confinement).
+version: "1.0"
+name: platform-sonarr
+volumes:
+  - name: sonarr-data
+    pool: zfs/aeolus/media-platform
+    path: /var/aeolus/ensembles/media-platform/sonarr
+services:
+  - name: sonarr
+    image: oci.cloudbsd.org/aeolus-sonarr:16
+    replicas: 1
+    ports: ["8989:8989"]
+    volumes: [sonarr-data, library]

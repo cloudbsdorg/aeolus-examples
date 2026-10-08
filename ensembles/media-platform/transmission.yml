@@ -1,0 +1,13 @@
+# Fragment included by media-platform (same directory — include confinement).
+version: "1.0"
+name: platform-transmission
+volumes:
+  - name: transmission-data
+    pool: zfs/aeolus/media-platform
+    path: /var/aeolus/ensembles/media-platform/transmission
+services:
+  - name: transmission
+    image: oci.cloudbsd.org/aeolus-transmission:16
+    replicas: 1
+    ports: ["9091:9091"]
+    volumes: [transmission-data, library]

@@ -1,0 +1,17 @@
+# FreeBSD 16 — Jellyfin, *arr, and a downloader composed with includes
+# Category: media
+version: "1.0"
+name: aeolus-media-platform
+namespace: demo
+
+volumes:
+  - name: library
+    pool: zfs/aeolus/media-platform
+    path: /var/aeolus/ensembles/media-platform/library
+
+includes:
+  - path: jellyfin.yml
+  - path: sonarr.yml
+  - path: radarr.yml
+  - path: prowlarr.yml
+  - path: transmission.yml

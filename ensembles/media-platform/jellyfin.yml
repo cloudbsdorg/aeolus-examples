@@ -1,0 +1,13 @@
+# Fragment included by media-platform (same directory — include confinement).
+version: "1.0"
+name: platform-jellyfin
+volumes:
+  - name: jf-config
+    pool: zfs/aeolus/media-platform
+    path: /var/aeolus/ensembles/media-platform/jellyfin-config
+services:
+  - name: jellyfin
+    image: oci.cloudbsd.org/aeolus-jellyfin:16
+    replicas: 1
+    ports: ["8096:8096"]
+    volumes: [jf-config, library]

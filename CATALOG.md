@@ -76,6 +76,8 @@ TrueNAS CORE plugins are obsolete; this list mirrors common NAS/lab apps that ex
 | `aeolus-owncast` | `owncast` | 8080 | Self-hosted live streaming |
 | `aeolus-ampache` | `ampache-php83` | 80 | Web media library |
 
+Jellyfin, Plex, or Emby plays the library. Sonarr and Radarr request TV and movies, Prowlarr supplies indexers, and Transmission, qBittorrent, or SABnzbd fetches. Owncast is live video. Ampache and Navidrome are music libraries. PeerTube has no FreeBSD package; `ensembles/peertube-deps` is nginx plus Postgres and Redis until it does.
+
 ## Downloaders
 
 | Image | Package(s) | Port | Notes |
@@ -143,6 +145,7 @@ TrueNAS CORE plugins are obsolete; this list mirrors common NAS/lab apps that ex
 | `ensembles/cluster-web` | nginx + postgresql16 + redis via includes |
 | `ensembles/owncast-stack` | owncast + postgresql16 via includes |
 | `ensembles/peertube-deps` | nginx + postgresql16 + redis via includes (no peertube pkg) |
+| `ensembles/media-platform` | jellyfin + sonarr + radarr + prowlarr + transmission via includes |
 
 ## Not in ports (yet)
 

@@ -1,0 +1,13 @@
+# Fragment included by media-platform (same directory — include confinement).
+version: "1.0"
+name: platform-radarr
+volumes:
+  - name: radarr-data
+    pool: zfs/aeolus/media-platform
+    path: /var/aeolus/ensembles/media-platform/radarr
+services:
+  - name: radarr
+    image: oci.cloudbsd.org/aeolus-radarr:16
+    replicas: 1
+    ports: ["7878:7878"]
+    volumes: [radarr-data, library]
