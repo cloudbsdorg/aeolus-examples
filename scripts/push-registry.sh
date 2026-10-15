@@ -5,7 +5,7 @@
 # Push locally built aeolus-*:TAG images to our OCI registry (FreeBSD builder).
 # GitHub is source stash only — no Actions, no GHCR-as-SoT.
 #
-# Usage: sudo REGISTRY=oci.cloudbsd.org scripts/push-registry.sh [image...]
+# Usage: sudo REGISTRY=docker.io/cloudbsd scripts/push-registry.sh [image...]
 # Prereq: scripts/build-all.sh already tagged images as ${REGISTRY}/aeolus-<name>:${TAG}
 
 set -eu
@@ -20,7 +20,7 @@ ROOT=$(CDPATH= cd -- "$(dirname "$0")/.." && pwd)
 # Reuse ALL list from build-all by sourcing the assignment only.
 ALL=$(awk -F'"' '/^ALL="/{print $2; exit}' "$ROOT/scripts/build-all.sh")
 [ -n "$ALL" ] || { echo "could not read ALL from build-all.sh" >&2; exit 1; }
-REGISTRY=${REGISTRY:-oci.cloudbsd.org}
+REGISTRY=${REGISTRY:-docker.io/cloudbsd}
 TAG=${TAG:-16}
 pick=${*:-$ALL}
 

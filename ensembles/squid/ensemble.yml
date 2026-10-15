@@ -11,7 +11,7 @@ volumes:
 
 services:
   - name: squid
-    image: oci.cloudbsd.org/aeolus-squid:16
+    image: docker.io/cloudbsd/aeolus-squid:16
     replicas: 1
     ports: ["3128:3128"]
     volumes: [data]

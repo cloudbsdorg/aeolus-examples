@@ -16,13 +16,13 @@ volumes:
 
 services:
   - name: postgresql
-    image: oci.cloudbsd.org/aeolus-postgresql16:16
+    image: docker.io/cloudbsd/aeolus-postgresql16:16
     volumes: [pg-data]
   - name: redis
-    image: oci.cloudbsd.org/aeolus-redis:16
+    image: docker.io/cloudbsd/aeolus-redis:16
     volumes: [redis-data]
   - name: mastodon
-    image: oci.cloudbsd.org/aeolus-mastodon:16
+    image: docker.io/cloudbsd/aeolus-mastodon:16
     depends_on: [postgresql, redis]
     ports: ["3000:3000"]
     volumes: [mastodon-data]

@@ -11,7 +11,7 @@ volumes:
 
 services:
   - name: zookeeper
-    image: oci.cloudbsd.org/aeolus-zookeeper:16
+    image: docker.io/cloudbsd/aeolus-zookeeper:16
     replicas: 1
     ports: ["2181:2181"]
     volumes: [data]

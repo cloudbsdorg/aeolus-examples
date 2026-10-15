@@ -11,7 +11,7 @@ volumes:
 
 services:
   - name: navidrome
-    image: oci.cloudbsd.org/aeolus-navidrome:16
+    image: docker.io/cloudbsd/aeolus-navidrome:16
     replicas: 1
     ports: ["4533:4533"]
     volumes: [data]

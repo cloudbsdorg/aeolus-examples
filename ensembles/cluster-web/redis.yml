@@ -7,6 +7,6 @@ volumes:
     path: /var/aeolus/ensembles/cluster-web/cache
 services:
   - name: redis
-    image: oci.cloudbsd.org/aeolus-redis:16
+    image: docker.io/cloudbsd/aeolus-redis:16
     replicas: 1
     volumes: [data]

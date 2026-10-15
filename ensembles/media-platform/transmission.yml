@@ -7,7 +7,7 @@ volumes:
     path: /var/aeolus/ensembles/media-platform/transmission
 services:
   - name: transmission
-    image: oci.cloudbsd.org/aeolus-transmission:16
+    image: docker.io/cloudbsd/aeolus-transmission:16
     replicas: 1
     ports: ["9091:9091"]
     volumes: [transmission-data, library]

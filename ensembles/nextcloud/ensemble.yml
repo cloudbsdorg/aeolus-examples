@@ -13,11 +13,11 @@ volumes:
 
 services:
   - name: db
-    image: oci.cloudbsd.org/aeolus-mariadb:16
+    image: docker.io/cloudbsd/aeolus-mariadb:16
     replicas: 1
     volumes: [db-data]
   - name: nextcloud
-    image: oci.cloudbsd.org/aeolus-nextcloud:16
+    image: docker.io/cloudbsd/aeolus-nextcloud:16
     replicas: 1
     depends_on: [db]
     ports: ["8080:80"]

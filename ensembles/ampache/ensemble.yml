@@ -11,7 +11,7 @@ volumes:
 
 services:
   - name: ampache
-    image: oci.cloudbsd.org/aeolus-ampache:16
+    image: docker.io/cloudbsd/aeolus-ampache:16
     replicas: 1
     ports: ["80:80"]
     volumes: [data]

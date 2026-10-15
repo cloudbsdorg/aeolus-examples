@@ -11,7 +11,7 @@ volumes:
 
 services:
   - name: postgresql17
-    image: oci.cloudbsd.org/aeolus-postgresql17:16
+    image: docker.io/cloudbsd/aeolus-postgresql17:16
     replicas: 1
     ports: ["5432:5432"]
     volumes: [data]

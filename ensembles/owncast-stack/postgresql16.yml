@@ -7,7 +7,7 @@ volumes:
     path: /var/aeolus/ensembles/owncast-stack/db
 services:
   - name: postgresql16
-    image: oci.cloudbsd.org/aeolus-postgresql16:16
+    image: docker.io/cloudbsd/aeolus-postgresql16:16
     replicas: 1
     volumes:
       - data

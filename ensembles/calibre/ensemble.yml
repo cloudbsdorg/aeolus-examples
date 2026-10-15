@@ -11,7 +11,7 @@ volumes:
 
 services:
   - name: calibre
-    image: oci.cloudbsd.org/aeolus-calibre:16
+    image: docker.io/cloudbsd/aeolus-calibre:16
     replicas: 1
     ports: ["8081:8081"]
     volumes: [data]

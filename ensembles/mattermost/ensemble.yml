@@ -11,7 +11,7 @@ volumes:
 
 services:
   - name: mattermost
-    image: oci.cloudbsd.org/aeolus-mattermost:16
+    image: docker.io/cloudbsd/aeolus-mattermost:16
     replicas: 1
     ports: ["8065:8065"]
     volumes: [data]

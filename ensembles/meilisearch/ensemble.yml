@@ -11,7 +11,7 @@ volumes:
 
 services:
   - name: meilisearch
-    image: oci.cloudbsd.org/aeolus-meilisearch:16
+    image: docker.io/cloudbsd/aeolus-meilisearch:16
     replicas: 1
     ports: ["7700:7700"]
     volumes: [data]

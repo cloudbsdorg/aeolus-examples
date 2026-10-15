@@ -11,7 +11,7 @@ volumes:
 
 services:
   - name: nginx
-    image: oci.cloudbsd.org/aeolus-nginx:16
+    image: docker.io/cloudbsd/aeolus-nginx:16
     replicas: 1
     ports: ["80:80"]
     volumes: [data]

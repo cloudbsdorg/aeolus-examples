@@ -11,7 +11,7 @@ volumes:
 
 services:
   - name: nats
-    image: oci.cloudbsd.org/aeolus-nats:16
+    image: docker.io/cloudbsd/aeolus-nats:16
     replicas: 1
     ports: ["4222:4222"]
     volumes: [data]

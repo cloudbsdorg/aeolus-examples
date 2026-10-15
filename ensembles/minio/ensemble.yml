@@ -11,7 +11,7 @@ volumes:
 
 services:
   - name: minio
-    image: oci.cloudbsd.org/aeolus-minio:16
+    image: docker.io/cloudbsd/aeolus-minio:16
     replicas: 1
     ports: ["9000:9000"]
     volumes: [data]

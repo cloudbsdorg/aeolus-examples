@@ -7,7 +7,7 @@ volumes:
     path: /var/aeolus/ensembles/media-platform/sonarr
 services:
   - name: sonarr
-    image: oci.cloudbsd.org/aeolus-sonarr:16
+    image: docker.io/cloudbsd/aeolus-sonarr:16
     replicas: 1
     ports: ["8989:8989"]
     volumes: [sonarr-data, library]

@@ -11,7 +11,7 @@ volumes:
 
 services:
   - name: lidarr
-    image: oci.cloudbsd.org/aeolus-lidarr:16
+    image: docker.io/cloudbsd/aeolus-lidarr:16
     replicas: 1
     ports: ["8686:8686"]
     volumes: [data]

@@ -11,7 +11,7 @@ volumes:
 
 services:
   - name: kafka
-    image: oci.cloudbsd.org/aeolus-kafka:16
+    image: docker.io/cloudbsd/aeolus-kafka:16
     replicas: 1
     ports: ["9092:9092"]
     volumes: [data]

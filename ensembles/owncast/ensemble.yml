@@ -11,7 +11,7 @@ volumes:
 
 services:
   - name: owncast
-    image: oci.cloudbsd.org/aeolus-owncast:16
+    image: docker.io/cloudbsd/aeolus-owncast:16
     replicas: 1
     ports: ["8080:8080"]
     volumes: [data]

@@ -11,7 +11,7 @@ volumes:
 
 services:
   - name: litellm
-    image: oci.cloudbsd.org/aeolus-litellm:16
+    image: docker.io/cloudbsd/aeolus-litellm:16
     replicas: 1
     ports: ["4000:4000"]
     volumes: [data]

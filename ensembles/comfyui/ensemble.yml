@@ -11,7 +11,7 @@ volumes:
 
 services:
   - name: comfyui
-    image: oci.cloudbsd.org/aeolus-comfyui:16
+    image: docker.io/cloudbsd/aeolus-comfyui:16
     replicas: 1
     ports: ["8188:8188"]
     volumes: [data]

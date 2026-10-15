@@ -11,7 +11,7 @@ volumes:
 
 services:
   - name: caddy
-    image: oci.cloudbsd.org/aeolus-caddy:16
+    image: docker.io/cloudbsd/aeolus-caddy:16
     replicas: 1
     ports: ["80:80"]
     volumes: [data]

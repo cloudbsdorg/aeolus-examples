@@ -10,7 +10,7 @@ volumes:
 
 services:
   - name: gitea
-    image: oci.cloudbsd.org/aeolus-gitea:16
+    image: docker.io/cloudbsd/aeolus-gitea:16
     replicas: 1
     ports: ["3000:3000"]
     volumes: [gitea-data]

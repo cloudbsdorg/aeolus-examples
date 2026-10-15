@@ -11,7 +11,7 @@ volumes:
 
 services:
   - name: grafana
-    image: oci.cloudbsd.org/aeolus-grafana:16
+    image: docker.io/cloudbsd/aeolus-grafana:16
     replicas: 1
     ports: ["3000:3000"]
     volumes: [data]

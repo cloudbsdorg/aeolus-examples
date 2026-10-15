@@ -36,7 +36,7 @@ Build and push on our hosts:
 sudo scripts/build-all.sh                 # → out/aeolus-*-16.tar + local tags
 sudo scripts/build-all.sh ollama unifi nginx
 
-# Push to our OCI registry (default REGISTRY=oci.cloudbsd.org):
+# Push to Docker Hub (default REGISTRY=docker.io/cloudbsd):
 sudo scripts/push-registry.sh
 sudo scripts/push-registry.sh ollama unifi
 ```

@@ -11,7 +11,7 @@ volumes:
 
 services:
   - name: llama-cpp
-    image: oci.cloudbsd.org/aeolus-llama-cpp:16
+    image: docker.io/cloudbsd/aeolus-llama-cpp:16
     replicas: 1
     ports: ["8080:8080"]
     volumes: [data]

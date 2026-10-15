@@ -11,7 +11,7 @@ volumes:
 
 services:
   - name: rabbitmq
-    image: oci.cloudbsd.org/aeolus-rabbitmq:16
+    image: docker.io/cloudbsd/aeolus-rabbitmq:16
     replicas: 1
     ports: ["5672:5672"]
     volumes: [data]

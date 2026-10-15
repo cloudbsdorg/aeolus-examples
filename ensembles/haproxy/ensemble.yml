@@ -11,7 +11,7 @@ volumes:
 
 services:
   - name: haproxy
-    image: oci.cloudbsd.org/aeolus-haproxy:16
+    image: docker.io/cloudbsd/aeolus-haproxy:16
     replicas: 1
     ports: ["8404:8404"]
     volumes: [data]

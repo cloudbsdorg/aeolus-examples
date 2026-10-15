@@ -11,7 +11,7 @@ volumes:
 
 services:
   - name: matrix-synapse
-    image: oci.cloudbsd.org/aeolus-matrix-synapse:16
+    image: docker.io/cloudbsd/aeolus-matrix-synapse:16
     replicas: 1
     ports: ["8008:8008"]
     volumes: [data]

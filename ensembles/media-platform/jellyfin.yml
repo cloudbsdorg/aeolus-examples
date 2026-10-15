@@ -7,7 +7,7 @@ volumes:
     path: /var/aeolus/ensembles/media-platform/jellyfin-config
 services:
   - name: jellyfin
-    image: oci.cloudbsd.org/aeolus-jellyfin:16
+    image: docker.io/cloudbsd/aeolus-jellyfin:16
     replicas: 1
     ports: ["8096:8096"]
     volumes: [jf-config, library]

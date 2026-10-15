@@ -11,7 +11,7 @@ volumes:
 
 services:
   - name: unifi
-    image: oci.cloudbsd.org/aeolus-unifi:16
+    image: docker.io/cloudbsd/aeolus-unifi:16
     replicas: 1
     ports: ["8443:8443"]
     volumes: [data]

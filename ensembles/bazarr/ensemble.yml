@@ -11,7 +11,7 @@ volumes:
 
 services:
   - name: bazarr
-    image: oci.cloudbsd.org/aeolus-bazarr:16
+    image: docker.io/cloudbsd/aeolus-bazarr:16
     replicas: 1
     ports: ["6767:6767"]
     volumes: [data]

@@ -11,7 +11,7 @@ volumes:
 
 services:
   - name: radarr
-    image: oci.cloudbsd.org/aeolus-radarr:16
+    image: docker.io/cloudbsd/aeolus-radarr:16
     replicas: 1
     ports: ["7878:7878"]
     volumes: [data]

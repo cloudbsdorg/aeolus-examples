@@ -2,5 +2,5 @@ version: "1.0"
 name: peertube-redis
 services:
   - name: redis
-    image: oci.cloudbsd.org/aeolus-redis:16
+    image: docker.io/cloudbsd/aeolus-redis:16
     replicas: 1

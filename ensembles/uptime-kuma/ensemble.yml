@@ -11,7 +11,7 @@ volumes:
 
 services:
   - name: uptime-kuma
-    image: oci.cloudbsd.org/aeolus-uptime-kuma:16
+    image: docker.io/cloudbsd/aeolus-uptime-kuma:16
     replicas: 1
     ports: ["3001:3001"]
     volumes: [data]

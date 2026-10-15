@@ -1,6 +1,6 @@
 # Aeolus examples catalog
 FreeBSD 16 OCI image recipes + ensembles for Aeolus demos.
-Tags: `oci.cloudbsd.org/aeolus-<name>:16` (override with `REGISTRY`).
+Tags: `docker.io/cloudbsd/aeolus-<name>:16` (override with `REGISTRY`).
 Source on GitHub; **build/publish on our FreeBSD builders** (GitHub has no FreeBSD runners — hooks only for Track + review).
 TrueNAS CORE plugins are obsolete; this list mirrors common NAS/lab apps that exist as FreeBSD packages.
 

@@ -11,7 +11,7 @@ volumes:
 
 services:
   - name: readarr
-    image: oci.cloudbsd.org/aeolus-readarr:16
+    image: docker.io/cloudbsd/aeolus-readarr:16
     replicas: 1
     ports: ["8787:8787"]
     volumes: [data]

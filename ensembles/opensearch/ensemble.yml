@@ -11,7 +11,7 @@ volumes:
 
 services:
   - name: opensearch
-    image: oci.cloudbsd.org/aeolus-opensearch:16
+    image: docker.io/cloudbsd/aeolus-opensearch:16
     replicas: 1
     ports: ["9200:9200"]
     volumes: [data]
